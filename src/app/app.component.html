@@ -1,0 +1,10 @@
+<h1>
+  {{title}}
+</h1>
+<button (click)="play()">Play</button>
+<button (click)="stop()">Stop</button>
+<ul>
+<li *ngFor="let i of visualsCount">
+  <visualization *ngIf="dymoGraph" [data]="dymoGraph" [viewConfig]="viewConfig" [playingUris]="playingDymos"></visualization>
+</li>
+</ul>
