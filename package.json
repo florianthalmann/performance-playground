@@ -8,7 +8,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "generate": "tsc -p generator/ && node generator/lib/script-runner.js"
   },
   "private": true,
   "dependencies": {
@@ -21,9 +22,9 @@
     "@angular/platform-browser-dynamic": "^2.4.0",
     "@angular/router": "^3.4.0",
     "core-js": "^2.4.1",
-    "d3": "^4.8.0",
-    "dymo-core": "^0.9.51",
+    "dymo-player": "github:dynamic-music/dymo-player",
     "isomorphic-fetch": "^2.2.1",
+    "music-visualization": "^0.0.4",
     "rxjs": "^5.1.0",
     "zone.js": "^0.7.6"
   },

@@ -1,0 +1,39 @@
+{
+  "@type":"Mapping",
+  "definition":{
+    "@type":"Evaluation",
+    "expression":"e1",
+    "bindings":[
+      {"var":"e1d", "val":{"@type": "Slider", "name": "Deformation", "init": 0}},
+      {"var":"e1s", "val":"scoreOnset", "search":["scoreEvent"]},
+      {"var":"e1p", "val":"onset"},
+      {"var":"e1o", "val":"Onset"},
+    ]
+  },
+  "targets":{
+    "@type":"Evaluation",
+    "expression":"e2",
+    "bindings":[
+      {"var":"e2l", "val":"LevelFeature"}
+    ]
+  }
+}
+
+{
+  "@id":"e1",
+  "@type":"Expression",
+  "vars":[
+    {"@id":"e1d", "name":"d"},
+    {"@id":"e1s", "name":"s"},
+    {"@id":"e1p", "name":"p"},
+    {"@id":"e1o", "name":"o"}
+  ],
+  "string":"o = p + d * (p-((s-0)*0.44100000000000006+0))"
+}
+
+{
+  "@id":"e2",
+  "@type":"Expression",
+  "vars":{"@id":"e2l", "name":"l"},
+  "string": "l == 1;"
+}

@@ -1,8 +1,6 @@
 import { Component, OnInit, OnChanges, SimpleChanges, Input, ViewChild, ElementRef } from '@angular/core';
 import { DymoService } from './dymo.service';
-import { MusicVisualization } from './mv/music-visualization';
-import { ViewConfig } from './mv/types';
-import { DymoCoordinates } from './mv/dymo-coordinates';
+import { MusicVisualization, PianoRoll, ViewConfig } from 'music-visualization';
 import { JsonGraph } from 'dymo-core';
 
 @Component({
@@ -25,7 +23,7 @@ export class VisualizationComponent implements OnInit, OnChanges {
 
   private init() {
     if (!this.visualization) {
-      this.visualization = new DymoCoordinates(this.visualsContainer.nativeElement, this.onClick.bind(this));
+      this.visualization = new PianoRoll(this.visualsContainer.nativeElement, this.onClick.bind(this));
     }
   }
 

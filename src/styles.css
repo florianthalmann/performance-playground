@@ -98,3 +98,20 @@ button:hover {
 	font-family: Avenir Next;
 	font-size: 18px;
 }
+
+.fullwidth {
+	width: 100%;
+}
+
+.left {
+    float: left;
+}
+
+.left2 {
+    overflow: hidden;
+    display: block;
+    padding: 0 4px 0 10px
+}
+.left2 input {
+    width: 100%
+}

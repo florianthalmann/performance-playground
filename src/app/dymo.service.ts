@@ -4,19 +4,21 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import * as _ from 'lodash';
-import { JsonGraph, DymoManager, uris } from 'dymo-core';
-import { ViewConfig, ViewConfigDim } from './mv/types';
+import { JsonGraph, uris } from 'dymo-core';
+import { DymoPlayerManager } from 'dymo-player';
+import { ViewConfig, ViewConfigDim } from 'music-visualization';
 
 @Injectable()
 export class DymoService {
 
-  private manager = new DymoManager(new AudioContext(), null, null, null);
-  private isManagerReady = this.manager.init();
+  private manager: DymoPlayerManager;
 
   private viewConfigTemplate: ViewConfig = {
     xAxis: this.createConfig("x-axis"),
     yAxis: this.createConfig("y-axis"),
     size: this.createConfig("size"),
+    width: this.createConfig("width"),
+    height: this.createConfig("height"),
     color: this.createConfig("color")
   };
   private createConfig(name): ViewConfigDim {
@@ -25,20 +27,25 @@ export class DymoService {
 
   constructor() {}
 
-  isReady(): Promise<any> {
-    return this.isManagerReady;
+  init(): Promise<any> {
+    this.manager = new DymoPlayerManager(true);
+    return this.manager.init();
   }
 
   getViewConfig(): Observable<ViewConfig> {
-    return this.manager.getFeatures().map(fs => this.adjustViewConfig(fs));
+    return this.manager.getDymoManager().getAttributeInfo().map(fs => this.adjustViewConfig(fs));
   }
 
   getDymoGraph(): Observable<JsonGraph> {
-    return this.manager.getJsonGraph(uris.DYMO, uris.HAS_PART, true);
+    return this.manager.getDymoManager().getJsonGraph(uris.DYMO, uris.HAS_PART, true);
   }
 
   loadDymo(dirPath: string): Promise<any> {
-    return this.manager.loadDymoAndRendering(dirPath+'dymo.json', dirPath+'rendering.json');
+    return this.manager.getDymoManager().loadIntoStore(dirPath+'dymo.json', dirPath+'rendering.json');
+  }
+
+  getUIControls() {
+    return this.manager.getDymoManager().getUIControls();
   }
 
   getPlayingDymos(): Observable<string[]> {
@@ -58,10 +65,18 @@ export class DymoService {
   }
 
   private adjustViewConfig(features): ViewConfig {
+    console.log(JSON.stringify(features))
     let newConfig = _.clone(this.viewConfigTemplate);
-    this.setParam(newConfig.xAxis, "index", features);
-    this.setParam(newConfig.yAxis, "level", features);
-    this.setParam(newConfig.size, "chromagram", features);
+    this.setParam(newConfig.xAxis, "scoreOnset", features);
+    this.setParam(newConfig.yAxis, "scorePitch", features);
+    //this.setParam(newConfig.yAxis, "level", features);
+    this.setParam(newConfig.width, "scoreDuration", features);
+    //this.setParam(newConfig.height, "duration", features);
+    //this.setParam(newConfig.size, "duration", features);
+    this.setParam(newConfig.color, "velocity", features);
+    /*this.setParam(newConfig.yAxis, "scoreOnset", features);
+    this.setParam(newConfig.width, "duration", features);
+    this.setParam(newConfig.height, "scoreDuration", features);*/
     return newConfig;
   }
 

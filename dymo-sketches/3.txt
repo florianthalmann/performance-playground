@@ -1,0 +1,45 @@
+∀ x : Dymo, Amplitude x < 1 / Duration x
+
+∀ x : t, a x < 1 / b x
+  t = Dymo
+  a = Amplitude
+  b = Duration
+
+a < 1 / b
+  targets = d : Dymo
+  a = Amplitude d
+  b = Duration d
+
+∀ x : t, a x < 1 / b x
+
+-----
+
+o = p + d * (p - s*0.441)
+  targets = e : PerformanceEvent
+  o = Onset e
+  p = onset e
+  s = onset scoreEvent e
+  d = DeformationParam
+
+-----
+
+how to deal with constants?
+
+o == p + d * (p - ((s-smin) * c + pmin))
+  targets = e : PerformanceEvent
+  o <- Onset e
+  p <- onset e
+  s <- onset scoreEvent e
+  c <- (max onset PE - min onset PE) / (max onset SE - min onset SE)
+  pmin <- min onset PE
+  smin <- min onset SE
+
+-----
+
+
+E: PerformanceEvent
+
+∀ e : E, o(e) = p(e) + d(e) * (p(e)-((s(e)-0)*0.441+0))
+
+how can we remove e from this?
+

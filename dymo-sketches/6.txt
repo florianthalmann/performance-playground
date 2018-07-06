@@ -1,0 +1,14 @@
+x > max y_i => x > y_i ∀i
+
+x > avg y_i => calculate avg and then solve with eq
+
+both only possible in one direction
+
+
+
+----
+
+-functional predicates
+-group bindings (lists bound to a variable)
+-targets (various ∀)
+-keep vars fixed (don't solve, features are automatically like that..)

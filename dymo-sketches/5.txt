@@ -1,0 +1,12 @@
+RelationalOperator
+  Equals
+  LessOrEquals
+  Less
+  Greater
+  GreaterOrEquals
+
+ArithmeticOperator
+  Addition
+  Subtraction
+  Multiplication
+  Division
