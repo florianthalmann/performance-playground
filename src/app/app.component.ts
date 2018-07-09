@@ -35,10 +35,10 @@ export class AppComponent implements OnInit {
 
   async ngOnInit() {
     await this.dymoService.init();
-    await this.dymoService.loadDymo(this.performanceDir);
     this.dymoService.getDymoGraph().subscribe(updatedGraph => {console.log(updatedGraph);this.dymoGraph = updatedGraph});
     this.dymoService.getViewConfig().subscribe(updatedConfig => {console.log(updatedConfig);this.viewConfig = updatedConfig});
     this.dymoService.getPlayingDymos().subscribe(updatedDymos => {console.log(updatedDymos);this.playingDymos = updatedDymos});
+    await this.dymoService.loadDymo(this.performanceDir);
     this.uiControls = _.values(this.dymoService.getUIControls());
   }
 
