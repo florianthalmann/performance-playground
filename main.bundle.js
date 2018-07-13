@@ -121,7 +121,7 @@ var DymoService = /** @class */ (function () {
     };
     DymoService.prototype.init = function () {
         this.manager = new __WEBPACK_IMPORTED_MODULE_5_dymo_player__["DymoPlayerManager"](true);
-        return this.manager.init();
+        return this.manager.init('https://raw.githubusercontent.com/dynamic-music/dymo-core/master/ontologies/');
     };
     DymoService.prototype.getViewConfig = function () {
         var _this = this;
