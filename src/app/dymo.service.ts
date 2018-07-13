@@ -9,7 +9,7 @@ import { DymoPlayerManager } from 'dymo-player';
 import { ViewConfig, ViewConfigDim } from 'music-visualization';
 
 @Injectable()
-export class DymoService {
+export class DymoService { 
 
   private manager: DymoPlayerManager;
 
