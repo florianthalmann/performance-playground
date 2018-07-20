@@ -64,7 +64,7 @@ export class PerformanceDymos {
     return this.addPerformanceDymo(fileInfos);
   }
 
-  async createDoublePerformanceDymo(audioFileNames: string[][]): Promise<string[]> {
+  async createDoublePerformanceDymo(audioFileNames: string[][]): Promise<string> {
     var fileInfos = audioFileNames.map(a => this.getSortedSlicedFileInfos(a));
     //var [scoreDymo, perfDymo1] = this.addScoreAndPerformanceDymos(fileInfos[0]);
     //var perfDymo2 = this.addAdditionalPerformanceDymo(fileInfos[1], scoreDymo);
@@ -92,27 +92,24 @@ export class PerformanceDymos {
     console.log(exp);
     new ExpressionGenerator(this.generator.getStore()).addConstraint(renderingUri, exp, true);
 
-    return Promise.all([
-      this.generator.getTopDymoJsonld(),
-      this.generator.getRenderingJsonld()
-        .then(j => {
-          j = JSON.parse(j);
-          j["dymo"] = j["dymo"]["@id"];
-          return JSON.stringify(j);
-        })
-    ]);
+    return this.generator.getRenderingJsonld()
+      .then(j => {
+        j = JSON.parse(j);
+        j["dymo"] = j["dymo"]["@id"];
+        return JSON.stringify(j);
+      });
   }
 
   private getSortedSlicedFileInfos(audioFileNames: string[]) {
     var fileInfos = this.parseFileInfos(audioFileNames, NEW_SCORE_PARSE_INFO, NEW_PERF_PARSE_INFO);
     fileInfos.sort((a,b) => a.perfValues[PERF_ONSET]-b.perfValues[PERF_ONSET]);
     console.log(_.uniq(fileInfos.map((f,i) => Math.round(f.perfValues[PERF_ONSET]))));
-    return fileInfos.slice(0,5);
+    return fileInfos.slice(0,100);
   }
 
   //TODO CREATE REAL REPRESENTATION WITH SCORE AND PERFORMANCE!!!!!
   //var dirPath = 'audio/Chopin_Op028-11_003_20100611-SMD-cut/';
-  async createFullPerformanceDymo(audioFileNames: string[]): Promise<string[]> {
+  async createFullPerformanceDymo(audioFileNames: string[]): Promise<string> {
     var fileInfos = this.getSortedSlicedFileInfos(audioFileNames);
     //console.log(fileInfos.slice(0,5));
     let dymo = await this.addPerformanceDymo(fileInfos);
@@ -128,9 +125,8 @@ export class PerformanceDymos {
     //var dynamicsSliderUri = await this.generator.addControl("Dynamics", uris.SLIDER);
     //this.addDeformationMapping2(fileInfos, SCORE_VELOCITY, PERF_VELOCITY, uris.AMPLITUDE, dynamicsSliderUri, renderingUri);
 
-    let topDymo = await this.generator.getTopDymoJsonld();
     let rendering = await this.generator.getRenderingJsonld();
-    return [topDymo, rendering];
+    return rendering;
 
     /*return Promise.all([
       this.generator.getTopDymoJsonld(),

@@ -31,26 +31,26 @@ var AUDIO_PATH2 = 'performances/'+PERFS["bach2"];;
 //var CONTEXT2 = 'http://localhost:4200/node_modules/dymo-core/ontologies/dymo-context.json';
 
 //createAndSaveDoublePerformanceDymo([AUDIO_PATH, AUDIO_PATH2], PARENT_PATH+'dymo.json', PARENT_PATH+'rendering.json')
-createAndSavePerformanceDymo(AUDIO_PATH, AUDIO_PATH+'dymo.json', AUDIO_PATH+'rendering.json')
+createAndSavePerformanceDymo(AUDIO_PATH, AUDIO_PATH+'save.json')
   .then(() => console.log('done'))
   .then(() => server.close())
   .catch(e => console.log(e));
 
-function createAndSaveDoublePerformanceDymo(audioPaths: string[], dymoOutPath: string, renderingOutPath: string): Promise<any> {
+function createAndSaveDoublePerformanceDymo(audioPaths: string[], dymoOutPath: string): Promise<any> {
   return Promise.all(audioPaths.map(p => getFilesInDir(p, ['wav'])))
     .then(files => files.map((fs,i) => fs.map(f => i == 0 ? 'Lou01XP_zerooffset/'+f : 'Mizumoto03XP_zerooffset/'+f)))
     .then(files => new PerformanceDymos().createDoublePerformanceDymo(files))
     //.then(jsonlds => jsonlds.map(j => j.replace(CONTEXT1, CONTEXT2)))
-    .then(jsonlds => { writeFile(jsonlds[0], dymoOutPath); writeFile(jsonlds[1], renderingOutPath); })
+    .then(jsonld => writeFile(jsonld, dymoOutPath))
     .catch(e => console.log(e));
 }
 
-function createAndSavePerformanceDymo(audioPath: string, dymoOutPath: string, renderingOutPath: string): Promise<any> {
+function createAndSavePerformanceDymo(audioPath: string, dymoOutPath: string): Promise<any> {
   return getFilesInDir(audioPath, ['wav'])
     //.then(files => files.map(f => 'audio/'+f))
     .then(files => new PerformanceDymos().createFullPerformanceDymo(files))
     //.then(jsonlds => jsonlds.map(j => j.replace(CONTEXT1, CONTEXT2)))
-    .then(jsonlds => { writeFile(jsonlds[0], dymoOutPath); writeFile(jsonlds[1], renderingOutPath); } )
+    .then(jsonld => writeFile(jsonld, dymoOutPath))
     .catch(e => console.log(e));
 }
 

@@ -6,8 +6,8 @@ Bach, Well-Tempered Clavier, Prelude and Fugue in C-sharp major, BWV 848, Lou
 <button (click)="play()">Play</button>
 <button (click)="stop()">Stop</button>
 <div *ngFor="let u of uiControls">
-  <label class="left" for="hey">{{u.name}} {{u.value}}</label>
-  <span class="left2"><input name="hey" type="range" class="fullwidth" min="0" max="3" step=".01" [(ngModel)]="u.value" (input)="u.update()"></span>
+  <label class="left" for="hey">{{u.name}} {{u.value.toFixed(2)}}</label>
+  <span class="left2"><input name="hey" type="range" class="fullwidth" min="0" max="3" step=".01" [(ngModel)]="u.uiValue" (input)="u.update()"></span>
 </div>
 <ul>
 <li *ngFor="let i of visualsCount">

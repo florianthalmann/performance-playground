@@ -4,12 +4,12 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import * as _ from 'lodash';
-import { JsonGraph, uris } from 'dymo-core';
+import { JsonGraph, uris, GlobalVars } from 'dymo-core';
 import { DymoPlayerManager } from 'dymo-player';
 import { ViewConfig, ViewConfigDim } from 'music-visualization';
 
 @Injectable()
-export class DymoService { 
+export class DymoService {
 
   private manager: DymoPlayerManager;
 
@@ -28,8 +28,9 @@ export class DymoService {
   constructor() {}
 
   init(): Promise<any> {
-    this.manager = new DymoPlayerManager(true);
-    return this.manager.init();
+    this.manager = new DymoPlayerManager(false);
+    this.manager.setScheduleAheadTime(.2);
+    return this.manager.init('https://raw.githubusercontent.com/dynamic-music/dymo-core/master/ontologies/');
   }
 
   getViewConfig(): Observable<ViewConfig> {
@@ -41,7 +42,7 @@ export class DymoService {
   }
 
   loadDymo(dirPath: string): Promise<any> {
-    return this.manager.getDymoManager().loadIntoStore(dirPath+'dymo.json', dirPath+'rendering.json');
+    return this.manager.getDymoManager().loadIntoStore(dirPath+'save.json');
   }
 
   getUIControls() {
