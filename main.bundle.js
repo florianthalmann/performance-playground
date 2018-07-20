@@ -41,7 +41,7 @@ webpackContext.id = 1744;
 /***/ 1747:
 /***/ (function(module, exports) {
 
-module.exports = "<h1>\n  {{title}}\n</h1>\n<button (click)=\"play()\">←</button>\nBach, Well-Tempered Clavier, Prelude and Fugue in C-sharp major, BWV 848, Lou\n<button (click)=\"play()\">Play</button>\n<button (click)=\"stop()\">Stop</button>\n<div *ngFor=\"let u of uiControls\">\n  <label class=\"left\" for=\"hey\">{{u.name}} {{u.value}}</label>\n  <span class=\"left2\"><input name=\"hey\" type=\"range\" class=\"fullwidth\" min=\"0\" max=\"3\" step=\".01\" [(ngModel)]=\"u.value\" (input)=\"u.update()\"></span>\n</div>\n<ul>\n<li *ngFor=\"let i of visualsCount\">\n  <visualization *ngIf=\"dymoGraph\" [data]=\"dymoGraph\" [viewConfig]=\"viewConfig\" [playingUris]=\"playingDymos\"></visualization>\n</li>\n</ul>"
+module.exports = "<h1>\n  {{title}}\n</h1>\n<button (click)=\"play()\">←</button>\nBach, Well-Tempered Clavier, Prelude and Fugue in C-sharp major, BWV 848, Lou\n<button (click)=\"play()\">Play</button>\n<button (click)=\"stop()\">Stop</button>\n<div *ngFor=\"let u of uiControls\">\n  <label class=\"left\" for=\"hey\">{{u.name}} {{u.uiValue.toFixed(2)}}</label>\n  <span class=\"left2\"><input name=\"hey\" type=\"range\" class=\"fullwidth\" min=\"0\" max=\"3\" step=\".01\" [(ngModel)]=\"u.uiValue\" (input)=\"u.update()\"></span>\n</div>\n<ul>\n<li *ngFor=\"let i of visualsCount\">\n  <visualization *ngIf=\"dymoGraph\" [data]=\"dymoGraph\" [viewConfig]=\"viewConfig\" [playingUris]=\"playingDymos\"></visualization>\n</li>\n</ul>"
 
 /***/ }),
 
@@ -120,7 +120,8 @@ var DymoService = /** @class */ (function () {
         return { name: name, param: { name: "random", uri: null, min: 0, max: 1 }, log: false };
     };
     DymoService.prototype.init = function () {
-        this.manager = new __WEBPACK_IMPORTED_MODULE_5_dymo_player__["DymoPlayerManager"](true);
+        this.manager = new __WEBPACK_IMPORTED_MODULE_5_dymo_player__["DymoPlayerManager"](false);
+        this.manager.setScheduleAheadTime(.2);
         return this.manager.init('https://raw.githubusercontent.com/dynamic-music/dymo-core/master/ontologies/');
     };
     DymoService.prototype.getViewConfig = function () {
@@ -131,7 +132,7 @@ var DymoService = /** @class */ (function () {
         return this.manager.getDymoManager().getJsonGraph(__WEBPACK_IMPORTED_MODULE_4_dymo_core__["uris"].DYMO, __WEBPACK_IMPORTED_MODULE_4_dymo_core__["uris"].HAS_PART, true);
     };
     DymoService.prototype.loadDymo = function (dirPath) {
-        return this.manager.getDymoManager().loadIntoStore(dirPath + 'dymo.json', dirPath + 'rendering.json');
+        return this.manager.getDymoManager().loadIntoStore(dirPath + 'save.json');
     };
     DymoService.prototype.getUIControls = function () {
         return this.manager.getDymoManager().getUIControls();
@@ -298,8 +299,8 @@ var AppComponent = /** @class */ (function () {
                     case 1:
                         _a.sent();
                         this.dymoService.getDymoGraph().subscribe(function (updatedGraph) { console.log(updatedGraph); _this.dymoGraph = updatedGraph; });
-                        this.dymoService.getViewConfig().subscribe(function (updatedConfig) { console.log(updatedConfig); _this.viewConfig = updatedConfig; });
-                        this.dymoService.getPlayingDymos().subscribe(function (updatedDymos) { console.log(updatedDymos); _this.playingDymos = updatedDymos; });
+                        this.dymoService.getViewConfig().subscribe(function (updatedConfig) { return _this.viewConfig = updatedConfig; });
+                        this.dymoService.getPlayingDymos().subscribe(function (updatedDymos) { return _this.playingDymos = updatedDymos; });
                         return [4 /*yield*/, this.dymoService.loadDymo(this.performanceDir)];
                     case 2:
                         _a.sent();
