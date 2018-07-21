@@ -45,6 +45,13 @@ module.exports = "<h1>\n  {{title}}\n</h1>\n<button (click)=\"play()\">←</butt
 
 /***/ }),
 
+/***/ 2060:
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
 /***/ 2061:
 /***/ (function(module, exports) {
 
@@ -60,13 +67,6 @@ module.exports = "<h1>\n  {{title}}\n</h1>\n<button (click)=\"play()\">←</butt
 /***/ }),
 
 /***/ 2063:
-/***/ (function(module, exports) {
-
-/* (ignored) */
-
-/***/ }),
-
-/***/ 2064:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(825);
@@ -487,5 +487,5 @@ var environment = {
 
 /***/ })
 
-},[2064]);
+},[2063]);
 //# sourceMappingURL=main.bundle.js.map
