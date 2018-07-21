@@ -1,6 +1,6 @@
 webpackJsonp([2,4],{
 
-/***/ 2053:
+/***/ 2052:
 /***/ (function(module, exports) {
 
 /*
@@ -253,24 +253,24 @@ function updateLink(linkElement, obj) {
 
 /***/ }),
 
-/***/ 2067:
+/***/ 2066:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(828);
+module.exports = __webpack_require__(827);
 
 
 /***/ }),
 
-/***/ 828:
+/***/ 827:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(994);
+var content = __webpack_require__(993);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(2053)(content, {});
+var update = __webpack_require__(2052)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -288,10 +288,10 @@ if(false) {
 
 /***/ }),
 
-/***/ 994:
+/***/ 993:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(995)();
+exports = module.exports = __webpack_require__(994)();
 // imports
 
 
@@ -303,7 +303,7 @@ exports.push([module.i, "* {\n\tmargin: 0;\n\tpadding: 0;\n}\n\nhtml, body { hei
 
 /***/ }),
 
-/***/ 995:
+/***/ 994:
 /***/ (function(module, exports) {
 
 /*
@@ -360,5 +360,5 @@ module.exports = function() {
 
 /***/ })
 
-},[2067]);
+},[2066]);
 //# sourceMappingURL=styles.bundle.js.map
