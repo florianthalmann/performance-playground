@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import * as _ from 'lodash';
-import { JsonGraph, uris, GlobalVars } from 'dymo-core';
+import { JsonGraph, uris } from 'dymo-core';
 import { DymoPlayerManager } from 'dymo-player';
 import { ViewConfig, ViewConfigDim } from 'music-visualization';
 
@@ -28,8 +27,7 @@ export class DymoService {
   constructor() {}
 
   init(): Promise<any> {
-    this.manager = new DymoPlayerManager(false);
-    this.manager.setScheduleAheadTime(.2);
+    this.manager = new DymoPlayerManager(false, 0.2, 1.2, 0.1);
     return this.manager.init('https://raw.githubusercontent.com/dynamic-music/dymo-core/master/ontologies/');
   }
 
