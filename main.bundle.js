@@ -120,7 +120,7 @@ var DymoService = /** @class */ (function () {
         return { name: name, param: { name: "random", uri: null, min: 0, max: 1 }, log: false };
     };
     DymoService.prototype.init = function () {
-        this.manager = new __WEBPACK_IMPORTED_MODULE_5_dymo_player__["DymoPlayerManager"](false, 0.2, 1.2, 0.1);
+        this.manager = new __WEBPACK_IMPORTED_MODULE_5_dymo_player__["DymoPlayerManager"](false, 1, 3, 0.1);
         return this.manager.init('https://raw.githubusercontent.com/dynamic-music/dymo-core/master/ontologies/');
     };
     DymoService.prototype.getViewConfig = function () {
