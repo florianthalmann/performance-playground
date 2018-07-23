@@ -23,7 +23,6 @@ var PERFS = {
 })
 export class AppComponent implements OnInit {
 
-  private title = 'Performance Playground';
   private performanceDir = 'performances/'+PERFS["bach"];
   private dymoGraph: JsonGraph;
   private viewConfig: ViewConfig;
@@ -39,7 +38,10 @@ export class AppComponent implements OnInit {
     this.dymoService.getViewConfig().subscribe(updatedConfig => this.viewConfig = updatedConfig);
     this.dymoService.getPlayingDymos().subscribe(updatedDymos => this.playingDymos = updatedDymos);
     await this.dymoService.loadDymo(this.performanceDir);
+    //console.log("LOADING DONE!")
     this.uiControls = _.values(this.dymoService.getUIControls());
+    //set max values for sliders...
+    this.uiControls.forEach((c,i) => c.max = i == this.uiControls.length-1 ? 2 : 3);
   }
 
   /*addDymo(filename: string): Promise<string> {

@@ -104,7 +104,7 @@ export class PerformanceDymos {
     var fileInfos = this.parseFileInfos(audioFileNames, NEW_SCORE_PARSE_INFO, NEW_PERF_PARSE_INFO);
     fileInfos.sort((a,b) => a.perfValues[PERF_ONSET]-b.perfValues[PERF_ONSET]);
     console.log(_.uniq(fileInfos.map((f,i) => Math.round(f.perfValues[PERF_ONSET]))));
-    return fileInfos.slice(0,100);
+    return fileInfos.slice(0,400);
   }
 
   //TODO CREATE REAL REPRESENTATION WITH SCORE AND PERFORMANCE!!!!!

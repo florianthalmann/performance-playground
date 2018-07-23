@@ -27,7 +27,7 @@ export class DymoService {
   constructor() {}
 
   init(): Promise<any> {
-    this.manager = new DymoPlayerManager(false, 0.2, 1.2, 0.1);
+    this.manager = new DymoPlayerManager(false, true, 1, 3, 0.1);
     return this.manager.init('https://raw.githubusercontent.com/dynamic-music/dymo-core/master/ontologies/');
   }
 
@@ -40,7 +40,7 @@ export class DymoService {
   }
 
   loadDymo(dirPath: string): Promise<any> {
-    return this.manager.getDymoManager().loadIntoStore(dirPath+'save.json');
+    return this.manager.loadDymo(dirPath+'save.json');
   }
 
   getUIControls() {
