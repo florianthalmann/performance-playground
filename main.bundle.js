@@ -41,7 +41,7 @@ webpackContext.id = 1743;
 /***/ 1746:
 /***/ (function(module, exports) {
 
-module.exports = "<h1>\n  {{title}}\n</h1>\n<button (click)=\"play()\">←</button>\nBach, Well-Tempered Clavier, Prelude and Fugue in C-sharp major, BWV 848, Lou\n<button (click)=\"play()\">Play</button>\n<button (click)=\"stop()\">Stop</button>\n<div *ngFor=\"let u of uiControls\">\n  <label class=\"left\" for=\"hey\">{{u.name}} {{u.uiValue.toFixed(2)}}</label>\n  <span class=\"left2\"><input name=\"hey\" type=\"range\" class=\"fullwidth\" min=\"0\" max=\"3\" step=\".01\" [(ngModel)]=\"u.uiValue\" (input)=\"u.update()\"></span>\n</div>\n<ul>\n<li *ngFor=\"let i of visualsCount\">\n  <visualization *ngIf=\"dymoGraph\" [data]=\"dymoGraph\" [viewConfig]=\"viewConfig\" [playingUris]=\"playingDymos\"></visualization>\n</li>\n</ul>"
+module.exports = "<h1>\n  Performance Deformations\n</h1>\n<button (click)=\"play()\">←</button>\nBach, Well-Tempered Clavier, Prelude and Fugue in C-sharp major, BWV 848, Lou\n<button (click)=\"play()\">Play</button>\n<button (click)=\"stop()\">Stop</button>\n<div *ngFor=\"let u of uiControls\">\n  <label class=\"left\" for=\"hey\">{{u.name}} {{u.uiValue.toFixed(2)}}</label>\n  <span class=\"left2\"><input name=\"hey\" type=\"range\" class=\"fullwidth\" min=\"0\" max=\"{{u.max}}\" step=\".01\" [(ngModel)]=\"u.uiValue\" (input)=\"u.update()\"></span>\n</div>\n<ul>\n<li *ngFor=\"let i of visualsCount\">\n  <visualization *ngIf=\"dymoGraph\" [data]=\"dymoGraph\" [viewConfig]=\"viewConfig\" [playingUris]=\"playingDymos\"></visualization>\n</li>\n</ul>"
 
 /***/ }),
 
@@ -120,7 +120,7 @@ var DymoService = /** @class */ (function () {
         return { name: name, param: { name: "random", uri: null, min: 0, max: 1 }, log: false };
     };
     DymoService.prototype.init = function () {
-        this.manager = new __WEBPACK_IMPORTED_MODULE_5_dymo_player__["DymoPlayerManager"](false, 1, 3, 0.1);
+        this.manager = new __WEBPACK_IMPORTED_MODULE_5_dymo_player__["DymoPlayerManager"](false, true, 0.3, 3, 0.1);
         return this.manager.init('https://raw.githubusercontent.com/dynamic-music/dymo-core/master/ontologies/');
     };
     DymoService.prototype.getViewConfig = function () {
@@ -131,7 +131,7 @@ var DymoService = /** @class */ (function () {
         return this.manager.getDymoManager().getJsonGraph(__WEBPACK_IMPORTED_MODULE_4_dymo_core__["uris"].DYMO, __WEBPACK_IMPORTED_MODULE_4_dymo_core__["uris"].HAS_PART, true);
     };
     DymoService.prototype.loadDymo = function (dirPath) {
-        return this.manager.getDymoManager().loadIntoStore(dirPath + 'save.json');
+        return this.manager.loadDymo(dirPath + 'save.json');
     };
     DymoService.prototype.getUIControls = function () {
         return this.manager.getDymoManager().getUIControls();
@@ -285,7 +285,6 @@ var PERFS = {
 var AppComponent = /** @class */ (function () {
     function AppComponent(dymoService) {
         this.dymoService = dymoService;
-        this.title = 'Performance Playground';
         this.performanceDir = 'performances/' + PERFS["bach"];
         this.visualsCount = [1];
     }
@@ -303,7 +302,10 @@ var AppComponent = /** @class */ (function () {
                         return [4 /*yield*/, this.dymoService.loadDymo(this.performanceDir)];
                     case 2:
                         _a.sent();
+                        //console.log("LOADING DONE!")
                         this.uiControls = __WEBPACK_IMPORTED_MODULE_1_lodash__["values"](this.dymoService.getUIControls());
+                        //set max values for sliders...
+                        this.uiControls.forEach(function (c, i) { return c.max = i == _this.uiControls.length - 1 ? 2 : 3; });
                         return [2 /*return*/];
                 }
             });
