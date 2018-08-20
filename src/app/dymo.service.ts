@@ -4,13 +4,13 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import * as _ from 'lodash';
 import { JsonGraph, uris } from 'dymo-core';
-import { DymoPlayerManager } from 'dymo-player';
+import { DymoPlayer } from 'dymo-player';
 import { ViewConfig, ViewConfigDim } from 'music-visualization';
 
 @Injectable()
 export class DymoService {
 
-  private manager: DymoPlayerManager;
+  private player: DymoPlayer;
 
   private viewConfigTemplate: ViewConfig = {
     xAxis: this.createConfig("x-axis"),
@@ -27,40 +27,40 @@ export class DymoService {
   constructor() {}
 
   init(): Promise<any> {
-    this.manager = new DymoPlayerManager(false, true, 1, 3, 0.1);
-    return this.manager.init('https://raw.githubusercontent.com/dynamic-music/dymo-core/master/ontologies/');
+    this.player = new DymoPlayer(false, true, 1, 3, 0.05);
+    return this.player.init('https://raw.githubusercontent.com/dynamic-music/dymo-core/master/ontologies/');
   }
 
   getViewConfig(): Observable<ViewConfig> {
-    return this.manager.getDymoManager().getAttributeInfo().map(fs => this.adjustViewConfig(fs));
+    return this.player.getDymoManager().getAttributeInfo().map(fs => this.adjustViewConfig(fs));
   }
 
   getDymoGraph(): Observable<JsonGraph> {
-    return this.manager.getDymoManager().getJsonGraph(uris.DYMO, uris.HAS_PART, true);
+    return this.player.getDymoManager().getJsonGraph(uris.DYMO, uris.HAS_PART, true);
   }
 
   loadDymo(dirPath: string): Promise<any> {
-    return this.manager.loadDymo(dirPath+'save.json');
+    return this.player.loadDymo(dirPath+'save.json');
   }
 
   getUIControls() {
-    return this.manager.getDymoManager().getUIControls();
+    return this.player.getDymoManager().getUIControls();
   }
 
   getPlayingDymos(): Observable<string[]> {
-    return this.manager.getPlayingDymoUris()//.debounceTime(50);
+    return this.player.getPlayingDymoUris()//.debounceTime(50);
   }
 
   startPlaying(): void {
-    this.manager.startPlaying();
+    this.player.play();
   }
 
   startPlayingDymo(dymo: Object): void {
-    this.manager.startPlayingUri(dymo["@id"]);
+    this.player.playUri(dymo["@id"]);
   }
 
   stopPlaying(): void {
-    this.manager.stopPlaying();
+    this.player.stop();
   }
 
   private adjustViewConfig(features): ViewConfig {
