@@ -1,23 +1,23 @@
 webpackJsonp([1,4],{
 
-/***/ 1743:
+/***/ 1749:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./N3Lexer": 433,
-	"./N3Lexer.js": 433,
-	"./N3Parser": 434,
-	"./N3Parser.js": 434,
-	"./N3Store": 703,
-	"./N3Store.js": 703,
-	"./N3StreamParser": 704,
-	"./N3StreamParser.js": 704,
-	"./N3StreamWriter": 705,
-	"./N3StreamWriter.js": 705,
-	"./N3Util": 435,
-	"./N3Util.js": 435,
-	"./N3Writer": 436,
-	"./N3Writer.js": 436
+	"./N3Lexer": 436,
+	"./N3Lexer.js": 436,
+	"./N3Parser": 437,
+	"./N3Parser.js": 437,
+	"./N3Store": 706,
+	"./N3Store.js": 706,
+	"./N3StreamParser": 707,
+	"./N3StreamParser.js": 707,
+	"./N3StreamWriter": 708,
+	"./N3StreamWriter.js": 708,
+	"./N3Util": 438,
+	"./N3Util.js": 438,
+	"./N3Writer": 439,
+	"./N3Writer.js": 439
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -33,61 +33,61 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 1743;
+webpackContext.id = 1749;
 
 
 /***/ }),
 
-/***/ 1746:
+/***/ 1752:
 /***/ (function(module, exports) {
 
 module.exports = "<h1>\n  Performance Deformations\n</h1>\n<button (click)=\"play()\">←</button>\nBach, Well-Tempered Clavier, Prelude and Fugue in C-sharp major, BWV 848, Lou\n<button (click)=\"play()\">Play</button>\n<button (click)=\"stop()\">Stop</button>\n<div *ngFor=\"let u of uiControls\">\n  <label class=\"left\" for=\"hey\">{{u.name}} {{u.uiValue.toFixed(2)}}</label>\n  <span class=\"left2\"><input name=\"hey\" type=\"range\" class=\"fullwidth\" min=\"0\" max=\"{{u.max}}\" step=\".01\" [(ngModel)]=\"u.uiValue\" (input)=\"u.update()\"></span>\n</div>\n<ul>\n<li *ngFor=\"let i of visualsCount\">\n  <visualization *ngIf=\"dymoGraph\" [data]=\"dymoGraph\" [viewConfig]=\"viewConfig\" [playingUris]=\"playingDymos\"></visualization>\n</li>\n</ul>"
 
 /***/ }),
 
-/***/ 2060:
+/***/ 2076:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 2061:
+/***/ 2077:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 2062:
+/***/ 2078:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 2063:
+/***/ 2079:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(825);
+module.exports = __webpack_require__(829);
 
 
 /***/ }),
 
-/***/ 538:
+/***/ 541:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__ = __webpack_require__(713);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__ = __webpack_require__(716);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_debounceTime__ = __webpack_require__(712);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_debounceTime__ = __webpack_require__(715);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_debounceTime___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_debounceTime__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_dymo_core__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_dymo_core__ = __webpack_require__(97);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_dymo_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_dymo_core__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_dymo_player__ = __webpack_require__(1309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_dymo_player__ = __webpack_require__(1313);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_dymo_player___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_dymo_player__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DymoService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -120,33 +120,33 @@ var DymoService = /** @class */ (function () {
         return { name: name, param: { name: "random", uri: null, min: 0, max: 1 }, log: false };
     };
     DymoService.prototype.init = function () {
-        this.manager = new __WEBPACK_IMPORTED_MODULE_5_dymo_player__["DymoPlayerManager"](false, true, 0.3, 3, 0.1);
-        return this.manager.init('https://raw.githubusercontent.com/dynamic-music/dymo-core/master/ontologies/');
+        this.player = new __WEBPACK_IMPORTED_MODULE_5_dymo_player__["DymoPlayer"](false, true, 1, 3, 0.05);
+        return this.player.init('https://raw.githubusercontent.com/dynamic-music/dymo-core/master/ontologies/');
     };
     DymoService.prototype.getViewConfig = function () {
         var _this = this;
-        return this.manager.getDymoManager().getAttributeInfo().map(function (fs) { return _this.adjustViewConfig(fs); });
+        return this.player.getDymoManager().getAttributeInfo().map(function (fs) { return _this.adjustViewConfig(fs); });
     };
     DymoService.prototype.getDymoGraph = function () {
-        return this.manager.getDymoManager().getJsonGraph(__WEBPACK_IMPORTED_MODULE_4_dymo_core__["uris"].DYMO, __WEBPACK_IMPORTED_MODULE_4_dymo_core__["uris"].HAS_PART, true);
+        return this.player.getDymoManager().getJsonGraph(__WEBPACK_IMPORTED_MODULE_4_dymo_core__["uris"].DYMO, __WEBPACK_IMPORTED_MODULE_4_dymo_core__["uris"].HAS_PART, true);
     };
     DymoService.prototype.loadDymo = function (dirPath) {
-        return this.manager.loadDymo(dirPath + 'save.json');
+        return this.player.loadDymo(dirPath + 'save.json');
     };
     DymoService.prototype.getUIControls = function () {
-        return this.manager.getDymoManager().getUIControls();
+        return this.player.getDymoManager().getUIControls();
     };
     DymoService.prototype.getPlayingDymos = function () {
-        return this.manager.getPlayingDymoUris(); //.debounceTime(50);
+        return this.player.getPlayingDymoUris(); //.debounceTime(50);
     };
     DymoService.prototype.startPlaying = function () {
-        this.manager.startPlaying();
+        this.player.play();
     };
     DymoService.prototype.startPlayingDymo = function (dymo) {
-        this.manager.startPlayingUri(dymo["@id"]);
+        this.player.playUri(dymo["@id"]);
     };
     DymoService.prototype.stopPlaying = function () {
-        this.manager.stopPlaying();
+        this.player.stop();
     };
     DymoService.prototype.adjustViewConfig = function (features) {
         console.log(JSON.stringify(features));
@@ -180,7 +180,7 @@ var DymoService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 824:
+/***/ 828:
 /***/ (function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -189,20 +189,20 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 824;
+webpackEmptyContext.id = 828;
 
 
 /***/ }),
 
-/***/ 825:
+/***/ 829:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(913);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__(934);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(936);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(917);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__(938);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(940);
 
 
 
@@ -215,14 +215,14 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dyna
 
 /***/ }),
 
-/***/ 933:
+/***/ 937:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dymo_service__ = __webpack_require__(538);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dymo_service__ = __webpack_require__(541);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -327,7 +327,7 @@ var AppComponent = /** @class */ (function () {
     AppComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["V" /* Component */])({
             selector: 'app-root',
-            template: __webpack_require__(1746),
+            template: __webpack_require__(1752),
             providers: [__WEBPACK_IMPORTED_MODULE_2__dymo_service__["a" /* DymoService */]]
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__dymo_service__["a" /* DymoService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__dymo_service__["a" /* DymoService */]) === "function" && _a || Object])
@@ -339,16 +339,16 @@ var AppComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 934:
+/***/ 938:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(344);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(346);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(903);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(909);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(933);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__visualization_component__ = __webpack_require__(935);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(907);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(913);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(937);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__visualization_component__ = __webpack_require__(939);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -387,15 +387,15 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 935:
+/***/ 939:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dymo_service__ = __webpack_require__(538);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_music_visualization__ = __webpack_require__(1741);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dymo_service__ = __webpack_require__(541);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_music_visualization__ = __webpack_require__(1747);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_music_visualization___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_music_visualization__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_dymo_core__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_dymo_core__ = __webpack_require__(97);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_dymo_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_dymo_core__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VisualizationComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -473,7 +473,7 @@ var VisualizationComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 936:
+/***/ 940:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -489,5 +489,5 @@ var environment = {
 
 /***/ })
 
-},[2063]);
+},[2079]);
 //# sourceMappingURL=main.bundle.js.map
